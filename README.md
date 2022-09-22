@@ -56,7 +56,7 @@ I would like to be able to print out a statement
 
 ## Dependencies
 
-This projects uses `rspec` for testing.
+This project uses `rspec` for testing.
 
 Gemfile
 ```ruby
