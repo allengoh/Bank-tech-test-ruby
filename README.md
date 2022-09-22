@@ -16,12 +16,12 @@ And a deposit of 2000 on 13-01-2023
 And a withdrawal of 500 on 14-01-2023
 When she prints her bank statement
 Then she would see
-
+```
 date || credit || debit || balance
 14/01/2023 || || 500.00 || 2500.00
 13/01/2023 || 2000.00 || || 3000.00
 10/01/2023 || 1000.00 || || 1000.00
-
+```
 ### User stories
 
 ```
@@ -47,6 +47,62 @@ As a customer
 So I can keep track of my financial transactions and account balance
 I would like to be able to print out a statement
 ```
+### Design
+
+First, I created a single transaction class to hold a transaction as an object
+
+Sample code:
+```ruby
+class SingleTransaction
+end
+```
+
+Then, I created a transactions class to hold the single transactions objects in an array
+
+Sample code:
+```ruby
+require_relative "./single_transaction"
+
+class Transactions
+
+  attr_reader :all
+
+  def initialize(single_transaction_class = SingleTransaction)
+    @all = []
+    @single_transaction = single_transaction_class
+  end
+```
+
+Lastly, I created a bank account class to be able to deposit and withdraw money.
+The bank account class is also able to print a statement out using the transactions class 
+through dependency injection.
+
+Sample code:
+```ruby
+require_relative "./transactions"
+
+class BankAccount
+
+  attr_reader :balance
+
+  def initialize(transactions_class = Transactions.new())
+    @balance = 0
+    @transactions = transactions_class
+  end
+
+  def deposit(date, amount)
+  end
+
+  def withdraw(date, amount)
+  end
+
+  def print_statement(transactions = @transactions)
+  end
+
+end
+
+```
+
 
 ### Quick start
 
