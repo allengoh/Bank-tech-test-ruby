@@ -71,6 +71,8 @@ class Transactions
     @all = []
     @single_transaction = single_transaction_class
   end
+
+end
 ```
 
 Lastly, I created a bank account class to be able to deposit and withdraw money.
