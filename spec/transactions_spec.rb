@@ -21,7 +21,9 @@ RSpec.describe Transactions do
   end
 
   it "adds a new withdrawal transaction" do
-    transactions = Transactions.new()
+    transactions = Transactions.new(mock_single_transaction_class)
+    new_transaction = instance_double("SingleTransaction", date: "18/09/22", credit: "", debit: 3000.00, balance: 0)
+    expect(mock_single_transaction_class).to receive(:new).with("18/09/22", "", 3000.00, 0).and_return(new_transaction)
     transactions.add_transaction("18/09/22", "", 3000.00, 0)
     expect(transactions.all[0].date).to eq("18/09/22")
     expect(transactions.all[0].debit).to eq(3000.00)
