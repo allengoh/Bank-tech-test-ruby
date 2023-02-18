@@ -2,17 +2,17 @@ require "transactions"
 
 RSpec.describe Transactions do
 
-  let(:mock_single_transaction) { double("SingleTransaction") }
+  let(:mock_single_transaction_class) { double("SingleTransaction") }
   
   it "initializes with an empty array of transactions" do
-    transactions = Transactions.new(mock_single_transaction)
+    transactions = Transactions.new(mock_single_transaction_class)
     expect(transactions.all).to eq([])
   end
 
   it "adds a new deposit transaction" do
-    transactions = Transactions.new(mock_single_transaction)
+    transactions = Transactions.new(mock_single_transaction_class)
     new_transaction = instance_double("SingleTransaction", date: "13/09/22", credit: 500.00, debit: "", balance: 0)
-    expect(mock_single_transaction).to receive(:new).with("13/09/22", 500.00, "", 0).and_return(new_transaction)
+    expect(mock_single_transaction_class).to receive(:new).with("13/09/22", 500.00, "", 0).and_return(new_transaction)
     transactions.add_transaction("13/09/22", 500.00, "", 0)
     expect(transactions.all[0].date).to eq("13/09/22")
     expect(transactions.all[0].credit).to eq(500.00)
