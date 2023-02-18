@@ -136,7 +136,7 @@ date || credit || debit || balance
 
 ## Dependencies
 
-This project uses `rspec` for testing.
+This project uses `rspec` for testing and `simplecov` for code coverage analysis.
 
 Gemfile
 ```ruby
@@ -146,7 +146,10 @@ source "https://rubygems.org"
 
 # gem "rails"
 
-gem "rspec", "~> 3.11"
-
+group :test do
+  gem "rspec", "~> 3.11"
+  gem "simplecov", require: false
+  gem "simplecov-console", require: false
+end
 ```
 
