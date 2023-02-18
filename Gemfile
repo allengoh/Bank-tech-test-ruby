@@ -4,8 +4,6 @@ source "https://rubygems.org"
 
 # gem "rails"
 
-
-
 group :test do
   gem "rspec", "~> 3.11"
   gem "simplecov", require: false
