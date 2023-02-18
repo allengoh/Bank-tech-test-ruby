@@ -108,12 +108,14 @@ end
 
 ### Quick start
 
-* clone this repository
-*  `bundle install` inside the terminal
+* Clone this repository
+* Enter `bundle install` in the terminal
+* Enter `irb` in the terminal
 
 ### Example of usage in irb terminal
 
 ```
+Bank-tech-test-ruby git:(main)  irb
 3.0.0 :001 > require('./lib/bank_account')
  => true 
 3.0.0 :002 > account = BankAccount.new()
@@ -133,6 +135,11 @@ date || credit || debit || balance
 3.0.0 :007 > quit
 ```
 
+### RSpec
+
+* All tests passed
+
+![This is an image of RSpec tests passing](/assets/images/RSpec-pass.png)
 
 ## Dependencies
 
