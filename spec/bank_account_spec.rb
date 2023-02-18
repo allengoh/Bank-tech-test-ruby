@@ -33,12 +33,12 @@ RSpec.describe BankAccount do
   end
 
   it "prints out a statement when there is a transaction" do 
-    bank_account = BankAccount.new()
-    bank_account.deposit("17/09/22", 500.00)
-    bank_account.withdraw("18/09/22", 300.00)
-    expect(bank_account.print_statement()[0].debit).to eq(300.00)    
-    expect(bank_account.print_statement()[1].credit).to eq(500.00)    
-    expect(bank_account.print_statement()[0].balance).to eq(200.00)    
+    bank_account = BankAccount.new(mock_transactions_class)
+    allow(mock_transactions_class).to receive(:all).and_return([
+      instance_double("SingleTransaction", date: "17/09/22", debit: "", credit: 500.00, balance: 500.00),
+      instance_double("SingleTransaction", date: "18/09/22", debit: 300.00, credit: "", balance: 200.00)
+    ])
+    expect { bank_account.print_statement() }.to output("date || credit || debit || balance\n18/09/22 ||  || 300.0 || 200.0\n17/09/22 || 500.0 ||  || 500.0\n").to_stdout    
   end
 
 end
