@@ -1,10 +1,13 @@
 require "bank_account"
 
+
 RSpec.describe BankAccount do
 
+  let(:mock_transactions_class) { instance_double("Transactions") }
+
   it "initialize with a balance of 0" do 
-    bank_account = BankAccount.new()
-    expect(bank_account.balance).to eq(0)
+    mock_bank_account = BankAccount.new(mock_transactions_class)
+    expect(mock_bank_account.balance).to eq(0)
   end
 
   it "returns a balance of 500.00 with a deposit transaction" do 
