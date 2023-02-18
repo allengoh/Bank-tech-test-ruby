@@ -23,9 +23,9 @@ class BankAccount
     if transactions.all.empty?
       return "There are no transactions to print out"
     else
-      statement = "#{formatter}\n"
+      puts formatter
       transactions.all.reverse.each do |transaction|
-        statement += "#{transaction.date} || #{transaction.credit} || #{transaction.debit} || #{transaction.balance}"  
+        puts "#{transaction.date} || #{transaction.credit} || #{transaction.debit} || #{transaction.balance}"        
       end
     end
   end
