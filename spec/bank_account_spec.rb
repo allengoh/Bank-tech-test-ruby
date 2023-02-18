@@ -27,7 +27,8 @@ RSpec.describe BankAccount do
   end
 
   it "returns a no transaction to print out statement if there are no transactions" do 
-    bank_account = BankAccount.new()
+    bank_account = BankAccount.new(mock_transactions_class)
+    expect(mock_transactions_class).to receive(:all).and_return([])
     expect(bank_account.print_statement()).to eq("There are no transactions to print out")    
   end
 
