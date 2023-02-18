@@ -18,7 +18,9 @@ RSpec.describe BankAccount do
   end
 
   it "returns a balance of 100.00 with a deposit and a withdrawal transaction" do 
-    bank_account = BankAccount.new()
+    bank_account = BankAccount.new(mock_transactions_class)
+    expect(mock_transactions_class).to receive(:add_transaction).with("17/09/22", 500.00, "", 500.00)
+    expect(mock_transactions_class).to receive(:add_transaction).with("18/09/22", "", 300.00, 200.00)
     bank_account.deposit("17/09/22", 500.00)
     bank_account.withdraw("18/09/22", 300.00)
     expect(bank_account.balance).to eq(200.00)
