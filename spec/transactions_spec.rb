@@ -1,18 +1,23 @@
 require "transactions"
 
 RSpec.describe Transactions do
+
+  let(:transaction_class) { double("SingleTransaction") }
   
   it "initializes with an empty array of transactions" do
-    transactions = Transactions.new()
+    transactions = Transactions.new(transaction_class)
     expect(transactions.all).to eq([])
   end
 
   it "adds a new deposit transaction" do
-    transactions = Transactions.new()
+    transactions = Transactions.new(transaction_class)
+    new_transaction = instance_double("SingleTransaction", date: "13/09/22", credit: 500.00, debit: "", balance: 0)
+    expect(transaction_class).to receive(:new).with("13/09/22", 500.00, "", 0).and_return(new_transaction)
     transactions.add_transaction("13/09/22", 500.00, "", 0)
     expect(transactions.all[0].date).to eq("13/09/22")
     expect(transactions.all[0].credit).to eq(500.00)
     expect(transactions.all[0].balance).to eq(0)
+    expect(transactions.all.size).to eq(1)
   end
 
   it "adds a new withdrawal transaction" do
