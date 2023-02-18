@@ -31,7 +31,15 @@ RSpec.describe Transactions do
   end
 
   it "adds a few transactions" do 
-    transactions = Transactions.new()
+    transactions = Transactions.new(mock_single_transaction_class)
+    new_transaction_1 = instance_double("SingleTransaction", date: "18/09/22", credit: 3000.00 , debit: "", balance: 0)
+    new_transaction_2 = instance_double("SingleTransaction", date: "19/09/22", credit: "", debit: 500.00, balance: 0)
+    new_transaction_3 = instance_double("SingleTransaction", date: "20/09/22", credit:1000.00, debit: "", balance: 0)
+    new_transaction_4 = instance_double("SingleTransaction", date: "21/09/22", credit: "", debit: 300.00, balance: 0)
+    expect(mock_single_transaction_class).to receive(:new).with("18/09/22", 3000.00, "", 0).and_return(new_transaction_1)
+    expect(mock_single_transaction_class).to receive(:new).with("19/09/22", "", 500.00, 0).and_return(new_transaction_2)
+    expect(mock_single_transaction_class).to receive(:new).with("20/09/22", 1000.00, "", 0).and_return(new_transaction_3)
+    expect(mock_single_transaction_class).to receive(:new).with("21/09/22", "", 300.00, 0).and_return(new_transaction_4)
     transactions.add_transaction("18/09/22", 3000.00, "", 0)
     transactions.add_transaction("19/09/22", "", 500.00, 0)
     transactions.add_transaction("20/09/22", 1000.00, "", 0)
