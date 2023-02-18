@@ -3,4 +3,3 @@
 --color
 --require simplecov
 --require simplecov-console
---format SimpleCov::Formatter::Console
